@@ -1,12 +1,11 @@
 package ru.billing.client;
-import ru.billing.exceptions.*;
 import ru.billing.stocklist.*;
 
 import java.awt.*;
 import java.util.Date;
 
 public class Main {
-    public static void main(String[] args) throws CloneNotSupportedException, ItemAlreadyExistsException, CatalogLoadException {
+    public static void main(String[] args) throws CloneNotSupportedException {
 
         /** Task_1.1-1.2 */
         Analogue FruitAnalog = new Analogue(11,"Pear", 35);
@@ -32,8 +31,8 @@ public class Main {
             i.printAll();
         }
         /** Task_2.2-2.3 */
-        FoodItem Pear = new FoodItem(Category.FOOD, 20, "Pear", 35, FruitAnalog, new Date(), (short) 2);
-        FoodItem Pear2 = new FoodItem(Category.FOOD, 20, "Pear", 35, FruitAnalog, new Date(), (short) 2);
+        FoodItem Pear = new FoodItem(Category.FOOD, 10, "Pear", 30, FruitAnalog, new Date(), (short) 2);
+        FoodItem Pear2 = new FoodItem(Category.FOOD, 10, "Pear", 30, FruitAnalog, new Date(), (short) 2);
 
         System.out.println("\n");
         System.out.println("Result of compare Pear and Pear2: " + Pear.equals(Pear2));
@@ -95,19 +94,10 @@ public class Main {
         /** task_4.2 */
 
         System.out.println();
-        System.out.println("Количество елементов массива до добавления: " + Catalog.KolItemInCatalog());
+        System.out.println("Количество елементов массива до добавления: " + Catalog.KolItemInCot());
         CatalogLoader loader = new CatalogStubLoader();
         loader.load(Catalog);
-        System.out.println("Количество елементов массива после добавления: " + Catalog.KolItemInCatalog());
-
-        /** task_6.3.1 */
-
-        System.out.println();
-        CatalogFileLoader CatalogFile = new CatalogFileLoader("C:\\Users\\roman\\IdeaProjects\\Project2\\src\\ru\\items.sql");
-        CatalogFile.load(Catalog);
-        System.out.println("Количество елементов массива после добавления файла: " + Catalog.KolItemInCatalog());
-
-
+        System.out.println("Количество елементов массива после добавления: " + Catalog.KolItemInCot());
 
     }
 }
