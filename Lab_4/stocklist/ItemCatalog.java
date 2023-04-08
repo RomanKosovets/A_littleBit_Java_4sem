@@ -1,5 +1,6 @@
 package ru.billing.stocklist;
-import ru.billing.exceptions.*;
+
+import ru.billing.stocklist.GenericItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,10 +11,7 @@ public class ItemCatalog {
     private final ArrayList<GenericItem> ALCatalog =
             new ArrayList<GenericItem>();                 // коллекция для сравнения
 
-    public void addItem(GenericItem item) throws ItemAlreadyExistsException {
-        if(catalog.containsKey(item.getID())) {
-            throw new ItemAlreadyExistsException("Item with ID" + item.getID() + "already exists in catalog");
-        }
+    public void addItem(GenericItem item) {
         catalog.put(item.getID(), item);
         ALCatalog.add(item);
     }
@@ -24,15 +22,8 @@ public class ItemCatalog {
         }
     }
 
-    public GenericItem findItemByID(int id) throws CatalogLoadException {
-        if (catalog.isEmpty()) {
-            throw new CatalogLoadException("Catalog is empty");
-        }
-        GenericItem item = catalog.get(id);
-        if (item == null) {
-            throw new CatalogLoadException("Item with ID " + id + " not found in catalog");
-        }
-        return item;
+    public GenericItem findItemByID(int id){
+        return catalog.getOrDefault(id, null);
     }
 
     public GenericItem findItemByIDAL(int id){
@@ -44,11 +35,12 @@ public class ItemCatalog {
         return null;
     }
 
-    public int KolItemInCatalog( ){
+    public int KolItemInCot( ){
         int result = 0;
         for (GenericItem i  : ALCatalog){
             result += 1;
         }
         return result;
     }
+
 }
